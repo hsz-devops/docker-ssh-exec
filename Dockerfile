@@ -4,7 +4,7 @@ ENV CGO_ENABLED=0 GOOS=linux
 WORKDIR /go/src/docker-ssh-exec
 RUN go build -ldflags '-w -s' -a -installsuffix cgo -o /docker-ssh-exec
 
-FROM scratch as runtime
+FROM alpine:3.7 as runtime
 COPY --from=builder /docker-ssh-exec /docker-ssh-exec
 ENV HOME=/root
 EXPOSE 80
